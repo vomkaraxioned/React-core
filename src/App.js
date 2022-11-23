@@ -1,6 +1,6 @@
 import './App.css';
 import React from "react";
-import {useState} from "react";
+import {useState,useEffect} from "react";
 
 /* componenet using class  */
 // class App extends React.Component{
@@ -17,7 +17,11 @@ import {useState} from "react";
 
 /* component using function */
 const App = (props)=>{
-  return (<h1>{props.name}</h1>);
+  const [state,setState] = useState(props.count),
+   changeState = ()=>setState(new Date().toLocaleTimeString());
+  setInterval(changeState,5000);
+  useEffect(()=>console.log(state),[state]);
+  return (<h1>{state}</h1>);
 };
 
 export default App;
